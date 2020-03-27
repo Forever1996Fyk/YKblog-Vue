@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function addArticle(data) {
   return request({
-    url: '/business/api/article/addArticle',
+    url: '/api/article/addArticle',
     method: 'post',
     data
   })
@@ -23,7 +23,7 @@ export function addArticle(data) {
  */
 export function getArticleById(id) {
   return request({
-    url: '/business/api/article/getArticleById',
+    url: '/api/article/getArticleById',
     method: 'get',
     params: { id }
   })
@@ -35,7 +35,7 @@ export function getArticleById(id) {
  */
 export function editArticle(data) {
   return request({
-    url: '/business/api/article/editArticle',
+    url: '/api/article/editArticle',
     method: 'put',
     data
   })
@@ -47,7 +47,7 @@ export function editArticle(data) {
  */
 export function delArticle(id) {
   return request({
-    url: '/business/api/article/delArticle',
+    url: '/api/article/delArticle',
     method: 'delete',
     params: { id }
   })
@@ -59,7 +59,7 @@ export function delArticle(id) {
  */
 export function delArticleByIds(ids) {
   return request({
-    url: '/business/api/article/delArticle/' + ids,
+    url: '/api/article/delArticle/' + ids,
     method: 'delete'
   })
 }
@@ -71,7 +71,7 @@ export function delArticleByIds(ids) {
  */
 export function getArticlesNoPage(data) {
   return request({
-    url: '/business/api/article/getArticles/noPage',
+    url: '/api/article/getArticles/noPage',
     method: 'get',
     params: data
   })
@@ -84,7 +84,7 @@ export function getArticlesNoPage(data) {
  */
 export function getArticles(data) {
   return request({
-    url: '/business/api/article/getArticles',
+    url: '/api/article/getArticles',
     method: 'get',
     params: data
   })
