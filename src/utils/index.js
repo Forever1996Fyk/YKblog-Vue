@@ -86,6 +86,28 @@ export function formatTime(time, option) {
   }
 }
 
+export function formatDate(value, fmt) {
+  let getDate = new Date(value);
+  let o = {
+    'M+': getDate.getMonth() + 1,
+    'd+': getDate.getDate(),
+    'h+': getDate.getHours(),
+    'm+': getDate.getMinutes(),
+    's+': getDate.getSeconds(),
+    'q+': Math.floor((getDate.getMonth() + 3) / 3),
+    'S': getDate.getMilliseconds()
+  };
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length))
+  }
+  for (let k in o) {
+    if (new RegExp('(' + k + ')').test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
+  }
+  return fmt;
+}
+
 /**
  * @param {string} url
  * @returns {Object}
@@ -343,5 +365,61 @@ export function removeClass(ele, cls) {
   if (hasClass(ele, cls)) {
     const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
     ele.className = ele.className.replace(reg, ' ')
+  }
+}
+
+/**
+ * 在对象数组中获取对应的参数数组
+ * 例如: array: [{id: 1, name: a}, {id: 2, name: b}], param: id => arrayNew: [{id: 1}, {id: 2}]
+ * @param array
+ */
+export function getArrayInObjectArray(array, param) {
+  var arrayNew = [];
+  if (array instanceof Array) {
+    switch (param) {
+      case 'id':
+        for (var i = 0; i < array.length; i++) {
+          arrayNew.push(array[i].id);
+        }
+        return arrayNew;
+    }
+  }
+}
+
+export function getAreaData(area, type) {
+  var data = area;
+  var prov = [];
+  var city1 =[];
+  var dist1 = [];
+  for (var item in data) {
+    if (item.match(/0000$/)) {//省
+      prov.push({key: item, value: data[item], children: []});
+    } else if (item.match(/00$/)) {//市
+      city1.push({key: item, value: data[item], children: []});
+    } else {
+      dist1.push({key: item, value: data[item]});
+    }
+  }
+  switch (type) {
+    case 'prov':
+      for (var index in prov) {
+        for (var index1 in city1) {
+          if (prov[index].key.slice(0, 2) === city1[index1].key.slice(0, 2)) {
+            prov[index].children.push(city1[index1])
+          }
+        }
+      }
+      return prov;
+    case 'city':
+      for (var index in city1) {
+        for (var index1 in dist1) {
+          if (city1[index].key.slice(0, 2) === dist1[index1].key.slice(0, 2)) {
+            city1[index].children.push(dist1[index1])
+          }
+        }
+      }
+      return city1;
+    case 'dist':
+      return dist1;
   }
 }
