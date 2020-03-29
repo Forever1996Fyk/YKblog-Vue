@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/auth/api/login/token',
+    url: '/api/login/token',
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function login(data) {
 
 export function getUserInfo(token) {
   return request({
-    url: '/auth/api/systemUserInfo/getUserProfile',
+    url: '/api/systemUserInfo/getUserProfile',
     method: 'get'
   })
 }
 
 export function getSystemUserList() {
   return request({
-    url: '/admin/api/systemUser/getSystemUsers',
+    url: '/api/systemUser/getSystemUsers',
     method: 'get'
   })
 }

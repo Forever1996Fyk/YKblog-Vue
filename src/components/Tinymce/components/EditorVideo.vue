@@ -7,22 +7,17 @@
       type="primary"
       @click=" dialogVisible=true"
     >
-      上传图片
+      上传视频
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
       <el-upload
-        :multiple="true"
-        :file-list="fileList"
-        :show-file-list="true"
-        :on-remove="handleRemove"
-        :on-success="handleSuccess"
-        :before-upload="beforeUpload"
-        :headers="headers"
-        class="editor-slide-upload"
+        class="avatar-uploader"
         :action="url"
         :data="param"
-        name="articleContent"
-        list-type="picture-card"
+        :headers="headers"
+        :on-success="handleSuccess"
+        :before-upload="beforeUpload"
+        :show-file-list="false"
       >
         <el-button size="small" type="primary">
           Click upload
@@ -61,7 +56,7 @@ export default {
         Authorization: 'Bearer ' + getToken()
       },
       file: '',
-      url: config.apiUrl.dev + '/api/oss/uploadOSS',
+      url: config.apiUrl.dev + '/fileupload/api/oss/uploadOSS',
       param: bucket.bucketPubR
     }
   },

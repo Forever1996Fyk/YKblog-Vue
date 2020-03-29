@@ -5,6 +5,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
+import workflowRouter from '@/router/modules/workflow'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -73,7 +74,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: {title: 'dashboard', icon: 'dashboard', affix: true},
+        meta: { title: 'dashboard', icon: 'dashboard', affix: true },
         roles: ['admin', 'customer']
       }
     ]
@@ -86,7 +87,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: {title: 'documentation', icon: 'documentation', affix: true}
+        meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
   },
@@ -99,7 +100,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: {title: 'guide', icon: 'guide', noCache: true}
+        meta: { title: 'guide', icon: 'guide', noCache: true }
       }
     ]
   },
@@ -113,7 +114,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
-        meta: {title: 'profile', icon: 'user', noCache: true}
+        meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
   }
@@ -125,6 +126,124 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/systemManage',
+    component: Layout,
+    redirect: '/systemManage/genCode',
+    alwaysShow: true,
+    name: 'SystemManage',
+    meta: {
+      title: 'SystemManage',
+      icon: 'lock',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'genCode',
+        component: () => import('@/views/systemManage/genCode'),
+        name: 'genCode',
+        meta: {
+          title: 'genCode',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'gateway',
+        component: () => import('@/views/systemManage/gateway'),
+        name: 'gateway',
+        meta: {
+          title: 'gateway',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'taskScheduler',
+        component: () => import('@/views/systemManage/taskScheduler'),
+        name: 'taskScheduler',
+        meta: {
+          title: 'taskScheduler',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'actionLog',
+        component: () => import('@/views/systemManage/actionLog'),
+        name: 'actionLog',
+        meta: {
+          title: 'actionLog',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'taskLog',
+        component: () => import('@/views/systemManage/taskLog'),
+        name: 'taskLog',
+        meta: {
+          title: 'taskLog',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
+    path: '/authorityManage',
+    component: Layout,
+    redirect: '/authorityManage/systemUser',
+    alwaysShow: true,
+    name: 'AuthorityManage',
+    meta: {
+      title: 'AuthorityManage',
+      icon: 'user',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'systemUser',
+        component: () => import('@/views/authorityManage/systemUser'),
+        name: 'systemUser',
+        meta: {
+          title: 'systemUser',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'systemRole',
+        component: () => import('@/views/authorityManage/systemRole'),
+        name: 'systemRole',
+        meta: {
+          title: 'systemRole',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'systemAuthority',
+        component: () => import('@/views/authorityManage/systemAuthority'),
+        name: 'systemAuthority',
+        meta: {
+          title: 'systemAuthority',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'systemMenu',
+        component: () => import('@/views/authorityManage/systemMenu'),
+        name: 'systemMenu',
+        meta: {
+          title: 'systemMenu',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'systemApi',
+        component: () => import('@/views/authorityManage/systemApi'),
+        name: 'systemApi',
+        meta: {
+          title: 'systemApi',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
     path: '/articleManage',
     component: Layout,
     redirect: '/articleManage/articleList',
@@ -133,7 +252,7 @@ export const asyncRoutes = [
     meta: {
       title: 'ArticleManage',
       icon: 'example',
-      roles: ['admin']
+      roles: ['admin', 'customer']
     },
     children: [
       {
@@ -143,7 +262,7 @@ export const asyncRoutes = [
         meta: {
           title: 'createArticle',
           icon: 'edit',
-          roles: ['admin']
+          roles: ['admin', 'customer']
         }
       },
       {
@@ -153,23 +272,103 @@ export const asyncRoutes = [
         meta: {
           title: 'articleList',
           icon: 'list',
-          roles: ['admin']
+          roles: ['admin', 'customer']
+        }
+      },
+      {
+        path: 'articleClass',
+        component: () => import('@/views/articleManage/articleClass'),
+        name: 'articleClass',
+        meta: {
+          title: 'articleClass',
+          icon: 'list',
+          roles: ['admin', 'customer']
         }
       },
       {
         path: 'editArticle/:id(\\d+)',
         component: () => import('@/views/articleManage/editArticle'),
         name: 'EditArticle',
-        meta: {title: 'Edit Article', noCache: true, activeMenu: '/articleManage/articleList'},
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/articleManage/articleList', roles: ['admin', 'customer'] },
         hidden: true
-      },
+      }
     ]
-  }
-];
+  },
+  workflowRouter
+  // {
+  //   path: '/workflowManage',
+  //   component: Layout,
+  //   redirect: '/workflowManage',
+  //   alwaysShow: true,
+  //   name: 'WorkflowManage',
+  //   meta: {
+  //     title: 'WorkflowManage',
+  //     icon: 'workflow',
+  //     roles: ['admin']
+  //   },
+  //   children: [
+  //     {
+  //       path: 'modelerDesign/:id(\\d+)',
+  //       component: () => import('@/views/workflowManage/workflow/modelerDesign'),
+  //       name: 'modelerDesign',
+  //       meta: {
+  //         title: 'modelerDesign',
+  //         roles: ['admin']
+  //       },
+  //       hidden: true
+  //     },
+  //     {
+  //       path: 'modelList',
+  //       component: () => import('@/views/workflowManage/workflow/modelList'),
+  //       name: 'modelList',
+  //       meta: {
+  //         title: 'modelList',
+  //         roles: ['admin']
+  //       }
+  //     },
+  //     {
+  //       path: 'processList',
+  //       component: () => import('@/views/workflowManage/workflow/processList'),
+  //       name: 'modelList',
+  //       meta: {
+  //         title: 'modelList',
+  //         roles: ['admin']
+  //       }
+  //     },
+  //     {
+  //       path: 'leave',
+  //       component: () => import('@/views/workflowManage/workflow/modelList'),
+  //       name: 'modelList',
+  //       meta: {
+  //         title: 'modelList',
+  //         roles: ['admin']
+  //       }
+  //     },
+  //     {
+  //       path: 'modelList',
+  //       component: () => import('@/views/workflowManage/workflow/modelList'),
+  //       name: 'modelList',
+  //       meta: {
+  //         title: 'modelList',
+  //         roles: ['admin']
+  //       }
+  //     }
+  //     // {
+  //     //   path: 'gateway',
+  //     //   component: () => import('@/views/systemManage/gateway'),
+  //     //   name: 'gateway',
+  //     //   meta: {
+  //     //     title: 'gateway',
+  //     //     roles: ['admin']
+  //     //   }
+  //     // }
+  //   ]
+  // }
+]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({y: 0}),
+  scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
 

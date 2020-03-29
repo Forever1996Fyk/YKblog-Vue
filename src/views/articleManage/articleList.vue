@@ -32,9 +32,9 @@
         {{ $t('table.delete') }}
       </el-button>
     </div>
-    <el-table v-loading="listLoading" ref="multipleTable" :data="list" border fit highlight-current-row style="width: 100%">
+    <el-table ref="multipleTable" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
 
-      <el-table-column type="selection" width="55"/>
+      <el-table-column type="selection" width="55" />
       <el-table-column :label="$t('table.title')">
         <template slot-scope="{row}">
           <router-link :to="'/articleManage/editArticle/'+row.id" class="link-type">
@@ -45,7 +45,7 @@
 
       <el-table-column :label="$t('table.articleCover')" align="center">
         <template slot-scope="{row}">
-          <img :src="row.articleCoverUrl" min-width="30" height="30" />
+          <img :src="row.articleCoverUrl" min-width="30" height="30">
         </template>
       </el-table-column>
 
@@ -57,26 +57,26 @@
 
       <el-table-column width="400" align="center" :label="$t('table.articleClass')">
         <template slot-scope="{row}">
-          <el-tag v-for="item in row.articleClassId.split(',')" size="mini">{{item}}</el-tag>
+          <el-tag v-for="item in row.articleClassId.split(',')" size="mini">{{ item }}</el-tag>
         </template>
       </el-table-column>
 
       <el-table-column width="100" :label="$t('table.importance')">
         <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon"/>
+          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
         </template>
       </el-table-column>
 
       <el-table-column width="100" :label="$t('table.isComment')">
         <template slot-scope="{row}">
-          <span>{{ row.comment | isCommentFilter}}</span>
+          <span>{{ row.comment | isCommentFilter }}</span>
         </template>
       </el-table-column>
 
       <el-table-column class-name="status-col" :label="$t('table.status')" width="110">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusTagFilter">
-            {{ row.status | statusFilter}}
+            {{ row.status | statusFilter }}
           </el-tag>
         </template>
       </el-table-column>
@@ -92,99 +92,105 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit"
-                @pagination="getList"/>
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.limit"
+      @pagination="getList"
+    />
   </div>
 </template>
 
 <script>
-    import {getArticles, delArticleByIds, delArticle} from '@/api/article'
-    import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-    import baseData from '@/config/baseData'
-    import waves from '@/directive/waves'
+import { getArticles, delArticleByIds, delArticle } from '@/api/article'
+import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+import baseData from '@/config/baseData'
+import waves from '@/directive/waves'
 
-    export default {
-        name: 'ArticleList',
-        components: {Pagination},
-        directives: {waves},
-        filters: {
-            statusTagFilter(status) {
-                const statusMap = {
-                    1: 'success',
-                    2: 'info',
-                    0: 'danger'
-                };
-                return statusMap[status];
-            },
-            statusFilter(status) {
-                return baseData.filterKeyValue(baseData.articleStatus)[status];
-            },
-            isCommentFilter(type) {
-                return baseData.filterKeyValue(baseData.whetherOptions)[type];
-            },
-        },
-        data() {
-            return {
-                list: null,
-                total: 0,
-                listLoading: true,
-                listQuery: {
-                    page: 1,
-                    pageSize: 20
-                }
-            }
-        },
-        created() {
-            this.getList()
-        },
-        methods: {
-            getList() {
-                this.listLoading = true
-                getArticles(this.listQuery).then(response => {
-                    this.list = response.data.data;
-                    this.total = response.data.total;
-                    this.listLoading = false
-                })
-            },
-            handleFilter() {
-                this.listQuery.page = 1
-                this.getList()
-            },
-            handleBatchDelete() {
-                var datas = this.$refs.multipleTable.selection;
-                var ids = []
-                if (datas.length === 0) {
-                    this.$message.error('请选择至少一条数据')
-                    return
-                }
-                for (var i = 0; i < datas.length; i++) {
-                    ids.push(datas[i].id)
-                }
-                this.handleDelete(ids)
-            },
-            handleDelete(data) {
-                this.$confirm('确定删除该数据吗?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    if (data instanceof Array) {
-                        delArticleByIds(data).then((res) => {
-                            this.getList()
-                            this.$message.success(res.message)
-                        })
-                    } else {
-                        delArticle(data).then((res) => {
-                            this.getList()
-                            this.$message.success(res.message)
-                        })
-                    }
-                }).catch(() => {
-                    this.$message.info('已取消')
-                })
-            },
-        }
+export default {
+  name: 'ArticleList',
+  components: { Pagination },
+  directives: { waves },
+  filters: {
+    statusTagFilter(status) {
+      const statusMap = {
+        1: 'success',
+        2: 'info',
+        0: 'danger'
+      }
+      return statusMap[status]
+    },
+    statusFilter(status) {
+      return baseData.filterKeyValue(baseData.articleStatus)[status]
+    },
+    isCommentFilter(type) {
+      return baseData.filterKeyValue(baseData.whetherOptions)[type]
     }
+  },
+  data() {
+    return {
+      list: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        page: 1,
+        pageSize: 20
+      }
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      getArticles(this.listQuery).then(response => {
+        console.log(response.data)
+        this.list = response.data.data
+        this.total = response.data.total
+        this.listLoading = false
+      })
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getList()
+    },
+    handleBatchDelete() {
+      var datas = this.$refs.multipleTable.selection
+      var ids = []
+      if (datas.length === 0) {
+        this.$message.error('请选择至少一条数据')
+        return
+      }
+      for (var i = 0; i < datas.length; i++) {
+        ids.push(datas[i].id)
+      }
+      this.handleDelete(ids)
+    },
+    handleDelete(data) {
+      this.$confirm('确定删除该数据吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        if (data instanceof Array) {
+          delArticleByIds(data).then((res) => {
+            this.getList()
+            this.$message.success(res.message)
+          })
+        } else {
+          delArticle(data).then((res) => {
+            this.getList()
+            this.$message.success(res.message)
+          })
+        }
+      }).catch(() => {
+        this.$message.info('已取消')
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

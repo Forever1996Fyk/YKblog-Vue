@@ -1,12 +1,12 @@
 <template>
   <el-dropdown :hide-on-click="false" :show-timeout="100" trigger="click">
     <el-button plain>
-      分类({{ platforms.length }})
+      分类({{ length }})
       <i class="el-icon-caret-bottom el-icon--right" />
     </el-button>
     <el-dropdown-menu slot="dropdown" class="no-border">
       <el-checkbox-group v-model="platforms" style="padding: 5px 15px;" size="mini">
-        <el-checkbox v-for="item in platformsOptions" :key="item.key" :label="item.key">
+        <el-checkbox v-for="item in platformsOptions" :key="item.id" :label="item.id">
           {{ item.name }}
         </el-checkbox>
       </el-checkbox-group>
@@ -15,6 +15,10 @@
 </template>
 
 <script>
+import {
+  getArticleClassesNoPage
+} from '@/api/articleClass'
+
 export default {
   props: {
     value: {
@@ -25,14 +29,8 @@ export default {
   },
   data() {
     return {
-      platformsOptions: [
-        { key: '1', name: 'java' },
-        { key: '2', name: 'python' },
-        { key: '3', name: 'php' },
-        { key: '4', name: 'c++' },
-        { key: '5', name: 'c#' },
-        { key: '6', name: 'c' }
-      ]
+      platformsOptions: null,
+      length: 0
     }
   },
   computed: {
@@ -43,6 +41,18 @@ export default {
       set(val) {
         this.$emit('input', val)
       }
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      getArticleClassesNoPage(null).then(res => {
+        console.log(res)
+        this.platformsOptions = res.data
+        this.length = res.data.length
+      })
     }
   }
 }

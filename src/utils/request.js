@@ -1,19 +1,20 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
-import $config from '@/config'
+// import $config from '@/config'
 import { getToken } from '@/utils/auth'
+import Qs from 'qs'
 
-let baseUrl = 'http://127.0.0.1:8088'
-switch (process.env.NODE_ENV) {
-  case 'develpoment':
-    // 开发环境请求url
-    baseUrl = $config.apiUrl.dev
-    break
-  case 'production':
-    baseUrl = $config.apiUrl.pro
-    break
-}
+const baseUrl = 'http://127.0.0.1:8088'
+// switch (process.env.NODE_ENV) {
+//   case 'develpoment':
+//     // 开发环境请求url
+//     baseUrl = $config.apiUrl.dev
+//     break
+//   case 'production':
+//     baseUrl = $config.apiUrl.pro
+//     break
+// }
 
 // create an axios instance
 const service = axios.create({

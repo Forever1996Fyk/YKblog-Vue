@@ -1,16 +1,16 @@
 <template>
   <el-dropdown :show-timeout="100" trigger="click">
     <el-button plain>
-      {{ comment_disabled?'评论: 开启':'评论: 关闭' }}
+      {{ comment_disabled === 1?'评论: 开启':'评论: 关闭' }}
       <i class="el-icon-caret-bottom el-icon--right" />
     </el-button>
     <el-dropdown-menu slot="dropdown" class="no-padding">
       <el-dropdown-item>
         <el-radio-group v-model="comment_disabled" style="padding: 10px;">
-          <el-radio :label="false">
+          <el-radio :label="0">
             关闭
           </el-radio>
-          <el-radio :label="true">
+          <el-radio :label="1">
             开启
           </el-radio>
         </el-radio-group>
@@ -23,7 +23,7 @@
 export default {
   props: {
     value: {
-      type: Boolean,
+      type: Number,
       default: false
     }
   },
