@@ -103,7 +103,7 @@ export default {
         Authorization: 'Bearer ' + getToken()
       },
       imgDataUrl: '',
-      url: 'http://127.0.0.1:8088/api/systemUser/updateUserIcon'
+      url: 'http://47.104.29.22:8088/api/systemUser/updateUserIcon'
     }
   },
   methods: {

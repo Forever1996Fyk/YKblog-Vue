@@ -11,7 +11,7 @@ import request from '@/utils/request'
  */
 export function getUpcomingTasks(data) {
   return request({
-    url: '/workflow/api/activiti/getUpcomingTasks',
+    url: '/api/activiti/getUpcomingTasks',
     method: 'get',
     params: data
   })
@@ -25,7 +25,7 @@ export function getUpcomingTasks(data) {
  */
 export function getDoneTasks(data) {
   return request({
-    url: '/workflow/api/activiti/getDoneTasks',
+    url: '/api/activiti/getDoneTasks',
     method: 'get',
     params: data
   })
@@ -39,7 +39,7 @@ export function getDoneTasks(data) {
  */
 export function getApplicationMatters(taskId) {
   return request({
-    url: '/workflow/api/activiti/getApplicationMatters/' + taskId,
+    url: '/api/activiti/getApplicationMatters/' + taskId,
     method: 'get'
   })
 }
@@ -52,7 +52,7 @@ export function getApplicationMatters(taskId) {
  */
 export function getHisApplicationMatters(executionId) {
   return request({
-    url: '/workflow/api/activiti/getHisApplicationMatters/' + executionId,
+    url: '/api/activiti/getHisApplicationMatters/' + executionId,
     method: 'get'
   })
 }
@@ -66,7 +66,7 @@ export function getHisApplicationMatters(executionId) {
  */
 export function updateTask(taskId, type, pass) {
   return request({
-    url: '/workflow/api/activiti/updateTask/' + taskId + '/' + type + '/' + pass,
+    url: '/api/activiti/updateTask/' + taskId + '/' + type + '/' + pass,
     method: 'put'
   })
 }
@@ -79,7 +79,7 @@ export function updateTask(taskId, type, pass) {
  */
 export function completeTask(taskId, pass, data) {
   return request({
-    url: '/workflow/api/activiti/completeTask/' + taskId + '/' + pass,
+    url: '/api/activiti/completeTask/' + taskId + '/' + pass,
     method: 'post',
     data
   })
@@ -92,7 +92,7 @@ export function completeTask(taskId, pass, data) {
  */
 export function getHighLightProcImage(processInstanceId) {
   return request({
-    url: '/workflow/api/activiti/getHighLightProcImage/' + processInstanceId,
+    url: '/api/activiti/getHighLightProcImage/' + processInstanceId,
     method: 'get'
   })
 }
@@ -104,7 +104,7 @@ export function getHighLightProcImage(processInstanceId) {
  */
 export function getApproveInfo(processInstanceId) {
   return request({
-    url: '/workflow/api/activiti/getApproveInfo/' + processInstanceId,
+    url: '/api/activiti/getApproveInfo/' + processInstanceId,
     method: 'get'
   })
 }

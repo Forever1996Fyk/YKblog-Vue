@@ -14,7 +14,7 @@ export default {
       return getToken()
     },
     apiUrl() {
-      return config.apiUrl.dev + '/workflow/api/activiti'
+      return config.apiUrl.dev + '/api/activiti'
     }
   },
   mounted() {

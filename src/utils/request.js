@@ -5,7 +5,7 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 import Qs from 'qs'
 
-const baseUrl = 'http://127.0.0.1:8088'
+const baseUrl = 'http://47.104.29.22:8088'
 // switch (process.env.NODE_ENV) {
 //   case 'develpoment':
 //     // 开发环境请求url

@@ -153,7 +153,8 @@ export const asyncRoutes = [
         meta: {
           title: 'gateway',
           roles: ['admin']
-        }
+        },
+        hidden: true
       },
       {
         path: 'taskScheduler',

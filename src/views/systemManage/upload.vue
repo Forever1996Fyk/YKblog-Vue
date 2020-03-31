@@ -1,7 +1,7 @@
 <template>
   <el-upload
     class="upload-demo"
-    action="http://127.0.0.1:8769/fileupload/api/fileupload/upload"
+    action="http://47.104.29.22:8088/api/fileupload/upload"
     :on-preview="handlePreview"
     :on-remove="handleRemove"
     :before-remove="beforeRemove"

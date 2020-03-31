@@ -3,7 +3,7 @@
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.status">
         <CommentDropdown v-model="postForm.comment" />
-        <PlatformDropdown v-model="postForm.articleClassId" />
+        <PlatformDropdown v-model="postForm.articleClassIds" />
         <SourceUrlDropdown v-model="postForm.source_uri" />
         <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
           Publish
@@ -95,7 +95,8 @@ const defaultForm = {
   articleCover: '', // 文章图片id
   articleCoverUrl: '', // 文章图片Url
   id: undefined,
-  articleClassId: [],
+  articleClassIds: [],
+  articleClassId: '',
   comment: 1,
   importance: 0,
   publishTime: ''
@@ -174,7 +175,7 @@ export default {
         this.postForm = response.data
         console.log(response.data)
         if (response.data.articleClassId) {
-          this.postForm.articleClassId = response.data.articleClassId.splice(',')
+          this.postForm.articleClassIds = response.data.articleClassId.splice(',')
         }
 
         // just for test
@@ -215,8 +216,8 @@ export default {
           }
           this.postForm.publishTime = formatDate(this.postForm.publishTime, 'yyyy-MM-dd hh:mm:ss')
 
-          if (this.postForm.articleClassId.length > 0) {
-            this.postForm.articleClassId = this.postForm.articleClassId.join(',')
+          if (this.postForm.articleClassIds.length > 0) {
+            this.postForm.articleClassId = this.postForm.articleClassIds.join(',')
           }
 
           console.log(this.postForm)

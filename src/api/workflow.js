@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function createNewModel(data) {
   return request({
-    url: '/workflow/api/activiti/createNewModel',
+    url: '/api/activiti/createNewModel',
     method: 'post',
     data
   })
@@ -22,7 +22,7 @@ export function createNewModel(data) {
  */
 export function delModel(id) {
   return request({
-    url: '/workflow/api/activiti/delModel',
+    url: '/api/activiti/delModel',
     method: 'delete',
     params: { id }
   })
@@ -34,7 +34,7 @@ export function delModel(id) {
  */
 export function delModelByIds(ids) {
   return request({
-    url: '/workflow/api/activiti/delModel/' + ids,
+    url: '/api/activiti/delModel/' + ids,
     method: 'delete'
   })
 }
@@ -46,7 +46,7 @@ export function delModelByIds(ids) {
  */
 export function getModelsNoPage(data) {
   return request({
-    url: '/workflow/api/activiti/getModels/noPage',
+    url: '/api/activiti/getModels/noPage',
     method: 'get',
     params: data
   })
@@ -59,7 +59,7 @@ export function getModelsNoPage(data) {
  */
 export function getModels(data) {
   return request({
-    url: '/workflow/api/activiti/getModels',
+    url: '/api/activiti/getModels',
     method: 'get',
     params: data
   })
@@ -71,7 +71,7 @@ export function getModels(data) {
  */
 export function synchronizeData() {
   return request({
-    url: '/workflow/api/activiti/synchronizeData',
+    url: '/api/activiti/synchronizeData',
     method: 'post'
   })
 }
@@ -83,7 +83,7 @@ export function synchronizeData() {
  */
 export function deployByModelId(data) {
   return request({
-    url: '/workflow/api/activiti/deployByModelId/' + data,
+    url: '/api/activiti/deployByModelId/' + data,
     method: 'post'
   })
 }
@@ -95,7 +95,7 @@ export function deployByModelId(data) {
  */
 export function getActProcessDeploys(data) {
   return request({
-    url: '/workflow/api/activiti/getProcessDeploys',
+    url: '/api/activiti/getProcessDeploys',
     method: 'get',
     params: data
   })
@@ -108,7 +108,7 @@ export function getActProcessDeploys(data) {
  */
 export function startProcess(deploymentId) {
   return request({
-    url: '/workflow/api/activiti/startProcess/' + deploymentId,
+    url: '/api/activiti/startProcess/' + deploymentId,
     method: 'post'
   })
 }
@@ -120,7 +120,7 @@ export function startProcess(deploymentId) {
  */
 export function activateProcess(processInstanceId) {
   return request({
-    url: '/workflow/api/activiti/activateProcess/' + processInstanceId,
+    url: '/api/activiti/activateProcess/' + processInstanceId,
     method: 'post'
   })
 }
@@ -132,7 +132,7 @@ export function activateProcess(processInstanceId) {
  */
 export function pendProcess(processInstanceId) {
   return request({
-    url: '/workflow/api/activiti/pendProcess/' + processInstanceId,
+    url: '/api/activiti/pendProcess/' + processInstanceId,
     method: 'post'
   })
 }
@@ -144,7 +144,7 @@ export function pendProcess(processInstanceId) {
  */
 export function deleteProcessInstance(data) {
   return request({
-    url: '/workflow/api/activiti/deleteProcessInstance',
+    url: '/api/activiti/deleteProcessInstance',
     method: 'delete',
     params: data
   })
@@ -157,7 +157,7 @@ export function deleteProcessInstance(data) {
  */
 export function getHistoryProcess(data) {
   return request({
-    url: '/workflow/api/activiti/getHistoryProcess',
+    url: '/api/activiti/getHistoryProcess',
     method: 'get',
     params: data
   })
