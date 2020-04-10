@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function addTaskLog(data) {
   return request({
-    url: '/system/api/taskLog/addTaskLog',
+    url: '/api/taskLog/addTaskLog',
     method: 'post',
     data
   })
@@ -23,7 +23,7 @@ export function addTaskLog(data) {
  */
 export function getTaskLogById(id) {
   return request({
-    url: '/system/api/taskLog/getTaskLogById',
+    url: '/api/taskLog/getTaskLogById',
     method: 'get',
     params: { id }
   })
@@ -35,7 +35,7 @@ export function getTaskLogById(id) {
  */
 export function editTaskLog(data) {
   return request({
-    url: '/system/api/taskLog/editTaskLog',
+    url: '/api/taskLog/editTaskLog',
     method: 'put',
     data
   })
@@ -47,7 +47,7 @@ export function editTaskLog(data) {
  */
 export function delTaskLog(id) {
   return request({
-    url: '/system/api/taskLog/delTaskLog',
+    url: '/api/taskLog/delTaskLog',
     method: 'delete',
     params: { id }
   })
@@ -59,7 +59,7 @@ export function delTaskLog(id) {
  */
 export function delTaskLogByIds(ids) {
   return request({
-    url: '/system/api/taskLog/delTaskLog/' + ids,
+    url: '/api/taskLog/delTaskLog/' + ids,
     method: 'delete'
   })
 }
@@ -71,7 +71,7 @@ export function delTaskLogByIds(ids) {
  */
 export function getTaskLogsNoPage(data) {
   return request({
-    url: '/system/api/taskLog/getTaskLogs/noPage',
+    url: '/api/taskLog/getTaskLogs/noPage',
     method: 'get',
     params: data
   })
@@ -84,7 +84,7 @@ export function getTaskLogsNoPage(data) {
  */
 export function getTaskLogs(data) {
   return request({
-    url: '/system/api/taskLog/getTaskLogs',
+    url: '/api/taskLog/getTaskLogs',
     method: 'get',
     params: data
   })

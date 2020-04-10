@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function addActionLog(data) {
   return request({
-    url: '/system/api/actionLog/addActionLog',
+    url: '/api/actionLog/addActionLog',
     method: 'post',
     data
   })
@@ -23,7 +23,7 @@ export function addActionLog(data) {
  */
 export function getActionLogById(id) {
   return request({
-    url: '/system/api/actionLog/getActionLogById',
+    url: '/api/actionLog/getActionLogById',
     method: 'get',
     params: { id }
   })
@@ -35,7 +35,7 @@ export function getActionLogById(id) {
  */
 export function editActionLog(data) {
   return request({
-    url: '/system/api/actionLog/editActionLog',
+    url: '/api/actionLog/editActionLog',
     method: 'put',
     data
   })
@@ -47,7 +47,7 @@ export function editActionLog(data) {
  */
 export function delActionLog(id) {
   return request({
-    url: '/system/api/actionLog/delActionLog',
+    url: '/api/actionLog/delActionLog',
     method: 'delete',
     params: { id }
   })
@@ -59,7 +59,7 @@ export function delActionLog(id) {
  */
 export function delActionLogByIds(ids) {
   return request({
-    url: '/system/api/actionLog/delActionLog/' + ids,
+    url: '/api/actionLog/delActionLog/' + ids,
     method: 'delete'
   })
 }
@@ -71,7 +71,7 @@ export function delActionLogByIds(ids) {
  */
 export function getActionLogsNoPage(data) {
   return request({
-    url: '/system/api/actionLog/getActionLogs/noPage',
+    url: '/api/actionLog/getActionLogs/noPage',
     method: 'get',
     params: data
   })
@@ -84,7 +84,7 @@ export function getActionLogsNoPage(data) {
  */
 export function getActionLogs(data) {
   return request({
-    url: '/system/api/actionLog/getActionLogs',
+    url: '/api/actionLog/getActionLogs',
     method: 'get',
     params: data
   })

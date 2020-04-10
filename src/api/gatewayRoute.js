@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function addGatewayRoute(data) {
   return request({
-    url: '/system/api/gatewayRoute/addGatewayRoute',
+    url: '/api/gatewayRoute/addGatewayRoute',
     method: 'post',
     data
   })
@@ -23,7 +23,7 @@ export function addGatewayRoute(data) {
  */
 export function getGatewayRouteById(id) {
   return request({
-    url: '/system/api/gatewayRoute/getGatewayRouteById',
+    url: '/api/gatewayRoute/getGatewayRouteById',
     method: 'get',
     params: { id }
   })
@@ -35,7 +35,7 @@ export function getGatewayRouteById(id) {
  */
 export function editGatewayRoute(data) {
   return request({
-    url: '/system/api/gatewayRoute/editGatewayRoute',
+    url: '/api/gatewayRoute/editGatewayRoute',
     method: 'put',
     data
   })
@@ -47,7 +47,7 @@ export function editGatewayRoute(data) {
  */
 export function delGatewayRoute(id) {
   return request({
-    url: '/system/api/gatewayRoute/delGatewayRoute',
+    url: '/api/gatewayRoute/delGatewayRoute',
     method: 'delete',
     params: { id }
   })
@@ -59,7 +59,7 @@ export function delGatewayRoute(id) {
  */
 export function delGatewayRouteByIds(ids) {
   return request({
-    url: '/system/api/gatewayRoute/delGatewayRoute/' + ids,
+    url: '/api/gatewayRoute/delGatewayRoute/' + ids,
     method: 'delete'
   })
 }
@@ -71,7 +71,7 @@ export function delGatewayRouteByIds(ids) {
  */
 export function getGatewayRoutesNoPage(data) {
   return request({
-    url: '/system/api/gatewayRoute/getGatewayRoutes/noPage',
+    url: '/api/gatewayRoute/getGatewayRoutes/noPage',
     method: 'get',
     params: data
   })
@@ -84,7 +84,7 @@ export function getGatewayRoutesNoPage(data) {
  */
 export function getGatewayRoutes(data) {
   return request({
-    url: '/system/api/gatewayRoute/getGatewayRoutes',
+    url: '/api/gatewayRoute/getGatewayRoutes',
     method: 'get',
     params: data
   })

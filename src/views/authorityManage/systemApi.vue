@@ -125,11 +125,6 @@
           <span>{{ row.path }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.serviceId')" align="center" width="180px">
-        <template slot-scope="{row}">
-          <span>{{ row.serviceId }}</span>
-        </template>
-      </el-table-column>
       <el-table-column :label="$t('table.persist')" align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.persist | whetherFilter }}</span>
@@ -217,19 +212,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
-            <el-form-item :label="$t('table.serviceId')" prop="serviceId">
-              <el-select
-                v-model="formData.serviceId"
-                class="filter-item"
-                placeholder="Please select"
-                style="width:100%"
-              >
-                <el-option v-for="item in serviceIdOptions" :key="item.key" :label="item.value" :value="item.key" />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
+          <el-col :span="24">
             <el-form-item :label="$t('table.path')" prop="path">
               <el-input v-model="formData.path" />
             </el-form-item>
@@ -312,9 +295,6 @@ import {
   delSystemApiByIds,
   getSystemApis
 } from '@/api/systemApi'
-import {
-  getGatewayRoutesNoPage
-} from '@/api/gatewayRoute'
 import baseData from '@/config/baseData'
 
 const apiCategoryOptions = [
@@ -382,7 +362,6 @@ export default {
         add: this.$t('Add'),
         view: this.$t('View')
       },
-      serviceIdOptions: [],
       whetherOptions: baseData.whetherOptions,
       requestMethodOptions: baseData.requestMethod,
       apiCategoryOptions,
@@ -397,7 +376,6 @@ export default {
   },
   created() {
     this.getList()
-    this.getServiceIds()
   },
   methods: {
     getList() {
@@ -523,19 +501,6 @@ export default {
       }
       this.handleDelete(ids)
     },
-    getServiceIds() {
-      this.serviceIdOptions = []
-      getGatewayRoutesNoPage().then((res) => {
-        var data = res.data
-        if (data) {
-          for (var i = 0; i < data.length; i++) {
-            var obj = { key: data[i].routeName, value: data[i].routeName }
-            this.serviceIdOptions.push(obj)
-          }
-        }
-      })
-    }
-
   }
 }
 </script>

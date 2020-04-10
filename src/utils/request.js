@@ -6,6 +6,7 @@ import { getToken } from '@/utils/auth'
 import Qs from 'qs'
 
 const baseUrl = 'http://47.104.29.22:8088'
+// const baseUrl = 'http://localhost:8088'
 // switch (process.env.NODE_ENV) {
 //   case 'develpoment':
 //     // 开发环境请求url
@@ -64,6 +65,7 @@ service.interceptors.response.use(
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
+      console.log(res);
       Message({
         message: res.message || 'Error',
         type: 'error',

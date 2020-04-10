@@ -10,7 +10,7 @@ import request from '@/utils/request'
  */
 export function getJobLogs(data) {
   return request({
-    url: '/system/api/taskScheduler/jobLogs',
+    url: '/api/taskScheduler/jobLogs',
     method: 'get',
     params: data
   })
@@ -23,7 +23,7 @@ export function getJobLogs(data) {
  */
 export function getJobs(data) {
   return request({
-    url: '/system/api/taskScheduler/jobs',
+    url: '/api/taskScheduler/jobs',
     method: 'get',
     params: data
   })
@@ -36,7 +36,7 @@ export function getJobs(data) {
  */
 export function addLocalJob(data) {
   return request({
-    url: '/system/api/taskScheduler/addLocalJob',
+    url: '/api/taskScheduler/addLocalJob',
     method: 'post',
     data
   })
@@ -49,7 +49,7 @@ export function addLocalJob(data) {
  */
 export function editLocalJob(data) {
   return request({
-    url: '/system/api/taskScheduler/editLocalJob',
+    url: '/api/taskScheduler/editLocalJob',
     method: 'put',
     data
   })
@@ -62,7 +62,7 @@ export function editLocalJob(data) {
  */
 export function deleteJob(data) {
   return request({
-    url: '/system/api/taskScheduler/deleteJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
+    url: '/api/taskScheduler/deleteJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
     method: 'delete'
   })
 }
@@ -74,7 +74,7 @@ export function deleteJob(data) {
  */
 export function pauseJob(data) {
   return request({
-    url: '/system/api/taskScheduler/pauseJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
+    url: '/api/taskScheduler/pauseJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
     method: 'put'
   })
 }
@@ -86,7 +86,7 @@ export function pauseJob(data) {
  */
 export function resumeJob(data) {
   return request({
-    url: '/system/api/taskScheduler/resumeJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
+    url: '/api/taskScheduler/resumeJob/' + data.jobName + '/' + data.jobGroupName + '/' + data.id,
     method: 'put'
   })
 }

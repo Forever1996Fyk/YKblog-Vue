@@ -12,7 +12,7 @@ const workflowRouter = {
   meta: {
     title: 'WorkflowManage',
     icon: 'workflow',
-    roles: ['admin']
+    roles: ['admin', 'customer', 'register']
   },
   children: [
     {
@@ -29,7 +29,7 @@ const workflowRouter = {
           name: 'modelerDesign',
           meta: {
             title: 'modelerDesign',
-            roles: ['admin']
+            roles: ['admin', 'customer', 'register']
           },
           hidden: true
         },
@@ -39,7 +39,7 @@ const workflowRouter = {
           name: 'modelList',
           meta: {
             title: 'modelList',
-            roles: ['admin']
+            roles: ['admin', 'customer', 'register']
           }
         },
         {
@@ -48,7 +48,7 @@ const workflowRouter = {
           name: 'processList',
           meta: {
             title: 'processList',
-            roles: ['admin']
+            roles: ['admin', 'customer', 'register']
           }
         },
         // {
@@ -66,7 +66,7 @@ const workflowRouter = {
           name: 'historyProcessList',
           meta: {
             title: 'historyProcessList',
-            roles: ['admin']
+            roles: ['admin', 'customer', 'register']
           }
         }
       ]
@@ -85,7 +85,7 @@ const workflowRouter = {
           name: 'upcomingTask',
           meta: {
             title: 'upcomingTask',
-            roles: ['admin', 'cusotmer']
+            roles: ['admin', 'customer', 'register']
           }
         },
         {
@@ -94,7 +94,7 @@ const workflowRouter = {
           name: 'doneTask',
           meta: {
             title: 'doneTask',
-            roles: ['admin', 'cusotmer']
+            roles: ['admin', 'customer', 'register']
           }
         },
         {
@@ -103,7 +103,7 @@ const workflowRouter = {
           name: 'handleTask',
           meta: {
             title: 'handleTask',
-            roles: ['admin', 'cusotmer']
+            roles: ['admin', 'customer', 'register']
           },
           hidden: true
         }
@@ -123,7 +123,7 @@ const workflowRouter = {
           name: 'userLeave',
           meta: {
             title: 'userLeave',
-            roles: ['admin', 'cusotmer']
+            roles: ['admin', 'customer', 'register']
           }
         },
         {
@@ -132,7 +132,7 @@ const workflowRouter = {
           name: 'userLeave',
           meta: {
             title: 'userLeave',
-            roles: ['admin', 'cusotmer']
+            roles: ['admin', 'customer', 'register']
           }
         }
       ]

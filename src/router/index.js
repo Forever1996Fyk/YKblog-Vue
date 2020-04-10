@@ -6,6 +6,10 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 import workflowRouter from '@/router/modules/workflow'
+import emailManageRouter from '@/router/modules/emailManage'
+import taskManageRouter from '@/router/modules/taskManage'
+import developManageRouter from '@/router/modules/developManage'
+import systemMonitorRouter from '@/router/modules/systemMonitor'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -51,6 +55,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/register',
+    component: () => import('@/views/login/register'),
+    hidden: true
+  },
+  {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
     hidden: true
@@ -75,7 +84,6 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true },
-        roles: ['admin', 'customer']
       }
     ]
   },
@@ -134,55 +142,13 @@ export const asyncRoutes = [
     meta: {
       title: 'SystemManage',
       icon: 'lock',
-      roles: ['admin']
+      roles: ['admin', 'customer', 'register']
     },
     children: [
-      {
-        path: 'genCode',
-        component: () => import('@/views/systemManage/genCode'),
-        name: 'genCode',
-        meta: {
-          title: 'genCode',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'gateway',
-        component: () => import('@/views/systemManage/gateway'),
-        name: 'gateway',
-        meta: {
-          title: 'gateway',
-          roles: ['admin']
-        },
-        hidden: true
-      },
-      {
-        path: 'taskScheduler',
-        component: () => import('@/views/systemManage/taskScheduler'),
-        name: 'taskScheduler',
-        meta: {
-          title: 'taskScheduler',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'actionLog',
-        component: () => import('@/views/systemManage/actionLog'),
-        name: 'actionLog',
-        meta: {
-          title: 'actionLog',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'taskLog',
-        component: () => import('@/views/systemManage/taskLog'),
-        name: 'taskLog',
-        meta: {
-          title: 'taskLog',
-          roles: ['admin']
-        }
-      }
+      developManageRouter,
+      taskManageRouter,
+      emailManageRouter,
+      systemMonitorRouter
     ]
   },
   {
@@ -290,9 +256,9 @@ export const asyncRoutes = [
         path: 'editArticle/:id(\\d+)',
         component: () => import('@/views/articleManage/editArticle'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/articleManage/articleList', roles: ['admin', 'customer'] },
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/articleManage/articleList' },
         hidden: true
-      }
+      },
     ]
   },
   workflowRouter
@@ -365,7 +331,7 @@ export const asyncRoutes = [
   //     // }
   //   ]
   // }
-]
+];
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

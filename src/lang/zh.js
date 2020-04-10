@@ -1,3 +1,5 @@
+import systemMonitorRouter from "@/router/modules/systemMonitor";
+
 export default {
   route: {
     dashboard: '首页',
@@ -8,8 +10,14 @@ export default {
     genCode: '代码生成',
     gateway: '路由网关',
     taskScheduler: '任务调度',
+    developManage: '开发管理',
+    swaggerDocument: 'swagger文档',
     actionLog: '操作日志',
     taskLog: '任务日志',
+    emailManage: '邮件管理',
+    emailConfig: '邮件配置',
+    emailLog: '邮件发送日志',
+    emailTemplate: '邮件模板',
     systemApi: '系统api',
     UserManage: '用户管理',
     WorkflowManage: '协同管理',
@@ -24,7 +32,7 @@ export default {
     ArticleManage: '文章管理',
     createArticle: '创建文章',
     articleList: '文章列表',
-    articleClass: '文章分类',
+    articleClass: '文章类型',
     modelList: '模型列表',
     processList: '流程列表',
     runningProcessList: '运行中流程',
@@ -32,7 +40,10 @@ export default {
     userLeave: '请假流程',
     upcomingTask: '待办任务',
     doneTask: '已办任务',
-    handleTask: '办理任务'
+    handleTask: '办理任务',
+    systemMonitor: '系统监控',
+    serverMonitor: '服务监控',
+    druidMonitor: '数据源监控',
   },
   navbar: {
     dashboard: '首页',
@@ -47,9 +58,23 @@ export default {
     logIn: '登录',
     username: '账号',
     password: '密码',
+    rePassword: '确认密码',
+    checkCode: '验证码',
+    email: '邮箱',
     any: '随便填',
     thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！',
+    registerTitle: '用户注册',
+    register: '注册',
+  },
+  register: {
+    userName: '用户名',
+    password: '密码',
+    rePassword: '确认密码',
+    checkCode: '验证码',
+    email: '邮箱',
+    registerTitle: '用户注册',
+    register: '注册',
   },
   documentation: {
     documentation: '文档',
@@ -151,7 +176,7 @@ export default {
     routePath: '路由路径',
     icon: '图标',
     menuLevel: '菜单级别',
-    sort: '序号',
+    sort: "序号",
     menuUrl: '路由路径',
     designFlow: '设计流程图',
     modelId: '模型id',
@@ -214,14 +239,35 @@ export default {
     pause: '暂停',
     resume: '恢复',
     jobMessage: '任务信息',
-    exceptionInfo: ' 异常信息',
+    exceptionInfo:' 异常信息',
     ipAddr: 'ip地址',
     actionTime: '操作时间',
     projectName: '项目名称',
     inputParam: '输入参数',
     outputParam: '输出参数',
     log: '日志',
-    articleClassCover: '文章封面'
+    protocol: '协议',
+    smtpHost: '发件服务器域名',
+    smtpUserName: '发件服务器账户',
+    smtpPassword: '发件服务器授权码',
+    isDefault: '是否默认',
+    subject: '主题',
+    recipients: '接收人',
+    cc: '抄送人',
+    content: '内容',
+    attachment: '附件路径',
+    sendNum: '发送次数',
+    error: '错误信息',
+    result: '结果',
+    configName: '配置名称',
+    tplName: '模板名称',
+    tplCode: '模板编码',
+    template: '模板',
+    tplParams: '模板参数',
+    templateType: '模板类型',
+    config: '配置',
+    jobAddress: '任务位置',
+    alarmMail: '警报邮箱'
   },
   example: {
     warning: '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'
@@ -265,6 +311,6 @@ export default {
   button: {
     approve: '批准',
     turnDown: '驳回',
-    invalid: '作废'
+    invalid: '作废',
   }
 }
