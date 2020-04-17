@@ -368,7 +368,7 @@ var KisBpmChoseCandidateGroupsCtrl = ['$scope', '$http', function($scope, $http)
             method: 'get',
             headers: {'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            url: '/admin/api/systemRole/getSystemRoles/noPage'})
+            url: '/api/systemRole/getSystemRoles/noPage'})
             .success(function (data, status, headers, config) {
                 var obj = data.data;
                 for (var i=0; i<obj.length; i++) {

@@ -102,3 +102,16 @@ export function assignRole(data) {
     params: data
   })
 }
+
+/**
+ * 修改密码
+ * @param oldPwd
+ * @param newPwd
+ * @returns {AxiosPromise}
+ */
+export function updateUserPassword(oldPwd, newPwd) {
+  return request({
+    url: '/api/systemUser/updateUserPassword?oldPwd=' + oldPwd + '&newPwd=' + newPwd,
+    method: 'PUT',
+  })
+}

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
-// import $config from '@/config'
+import config from '@/config'
 import { getToken } from '@/utils/auth'
 import Qs from 'qs'
 
-const baseUrl = 'http://47.104.29.22:8088'
-// const baseUrl = 'http://localhost:8088'
+// const baseUrl = 'http://47.104.29.22:8088'
+const baseUrl = config.apiUrl.dev;
 // switch (process.env.NODE_ENV) {
 //   case 'develpoment':
 //     // 开发环境请求url

@@ -1,156 +1,254 @@
 <template>
-  <el-card style="margin-bottom:20px;">
-    <div slot="header" class="clearfix">
-      <span>About me</span>
-    </div>
-
-    <div class="user-profile">
-      <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <!--          <a class="btn" @click="updateUserIcon">上传</a>-->
-          <div class="user-name text-center">{{ user.name }}</div>
-        </pan-thumb>
+  <div>
+    <el-card style="margin-bottom:20px;">
+      <div slot="header" class="clearfix">
+        <span>About me</span>
       </div>
 
-      <div class="box-center">
-        <el-button size="mini" type="primary" icon="el-icon-upload" @click="updateUserIcon">
-          Change Avatar
-        </el-button>
-        <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
-      </div>
-    </div>
+      <div class="user-profile">
+        <div class="box-center">
+          <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
+            <!--          <a class="btn" @click="updateUserIcon">上传</a>-->
+            <div class="user-name text-center">{{ user.name }}</div>
+          </pan-thumb>
+        </div>
 
-    <div class="user-bio">
-      <div class="user-education user-bio-section">
-        <div class="user-bio-section-header">
-          <svg-icon icon-class="education" />
-          <span>Education</span></div>
-        <div class="user-bio-section-body">
-          <div class="text-muted">
-            JS in Computer Science from the University of Technology
+        <div class="box-center">
+          <el-button size="mini" icon="el-icon-upload" @click="updateUserIcon">
+            Change Avatar
+          </el-button>
+          <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
+        </div>
+      </div>
+
+      <div class="user-bio">
+        <div class="user-education user-bio-section">
+          <div class="user-bio-section-header">
+            <svg-icon icon-class="education"/>
+            <span>Education</span></div>
+          <div class="user-bio-section-body">
+            <div class="text-muted">
+              {{formData.oneWord}} <a class="editEdu" @click.prevent="dialogFormVisible = true">修改</a>
+              <label/>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-skills user-bio-section">
+          <div class="user-bio-section-header">
+            <svg-icon icon-class="skill"/>
+            <span>Skills</span>
+            <span><el-button @click="dialogSkillsFormVisible = true" size="mini"><i
+              class="el-icon-plus"></i></el-button></span>
+          </div>
+          <div class="user-bio-section-body">
+            <div class="progress-item" v-for="(item, index) in formData.skillsList">
+              <span>{{formData.skillsList[index].skillsName}}</span>
+              <el-slider v-model="formData.skillsList[index].skillsSlider" show-input :show-input-controls="false"
+                         @change="changeSkillsSlider(item)"></el-slider>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header">
-          <svg-icon icon-class="skill" />
-          <span>Skills</span></div>
-        <div class="user-bio-section-body">
-          <div class="progress-item">
-            <span>Vue</span>
-            <el-progress :percentage="70" />
-          </div>
-          <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="18" />
-          </div>
-          <div class="progress-item">
-            <span>Css</span>
-            <el-progress :percentage="12" />
-          </div>
-          <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="100" status="success" />
-          </div>
-        </div>
-      </div>
-    </div>
+      <my-upload field="userIcon"
+                 @crop-success="cropSuccess"
+                 @crop-upload-success="cropUploadSuccess"
+                 @crop-upload-fail="cropUploadFail"
+                 v-model="show"
+                 :width="300"
+                 :height="300"
+                 :url="url"
+                 :params="params"
+                 :headers="headers"
+                 img-format="jpg"></my-upload>
 
-    <my-upload
-      v-model="show"
-      field="userIcon"
-      :width="300"
-      :height="300"
-      :url="url"
-      :params="params"
-      :headers="headers"
-      img-format="jpg"
-      @crop-success="cropSuccess"
-      @crop-upload-success="cropUploadSuccess"
-      @crop-upload-fail="cropUploadFail"
-    />
-  </el-card>
+      <el-dialog :visible.sync="dialogFormVisible" title="一句简介">
+        <el-input
+          :autosize="{ minRows: 4, maxRows: 8}"
+          v-model="formData.oneWord"
+          type="textarea"
+          placeholder="Please input"
+        />
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">
+            {{ $t('table.cancel') }}
+          </el-button>
+          <el-button type="primary" @click="save('oneWord')">
+            {{ $t('table.confirm') }}
+          </el-button>
+        </div>
+      </el-dialog>
+
+      <el-dialog :visible.sync="dialogSkillsFormVisible" title="添加技能">
+        <el-form label-width="100px">
+          <el-row>
+            <el-col :span="12">
+              <el-form-item :label="$t('table.skillsName')" prop="skillsName">
+                <el-input v-model="skillsName"/>
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="12">
+              <el-form-item :label="$t('table.skillsSlider')" prop="skillsSlider">
+                <el-slider show-input v-model="skillsSlider"></el-slider>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogSkillsFormVisible = false">
+            {{ $t('table.cancel') }}
+          </el-button>
+          <el-button type="primary" @click="save('addSkills')">
+            {{ $t('table.confirm') }}
+          </el-button>
+        </div>
+      </el-dialog>
+    </el-card>
+
+  </div>
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
-import myUpload from 'vue-image-crop-upload'
-import { getToken } from '@/utils/auth'
-import bucket from '@/config/bucket'
-import { mapMutations } from 'vuex'
+    import PanThumb from '@/components/PanThumb'
+    import myUpload from 'vue-image-crop-upload'
+    import {getToken} from '@/utils/auth'
+    import bucket from '@/config/bucket'
+    import config from '@/config'
+    import {mapMutations} from 'vuex'
+    import {addUserIntroduce, getUserIntroducesNoPage} from '@/api/userIntroduce'
 
-export default {
-  components: { PanThumb, myUpload },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-          avatar: '',
-          roles: ''
-        }
-      }
-    }
-  },
-  data() {
-    return {
-      show: false,
-      params: bucket.bucketPubR,
-      headers: {
-        Authorization: 'Bearer ' + getToken()
-      },
-      imgDataUrl: '',
-      url: 'http://47.104.29.22:8088/api/systemUser/updateUserIcon'
-    }
-  },
-  methods: {
-    ...mapMutations({
-      SET_AVATAR: 'user/SET_AVATAR'
-    }),
-    updateUserIcon() {
-      this.show = !this.show
-    },
-    /** y
+    export default {
+        components: {PanThumb, myUpload},
+        data() {
+            return {
+                show: false,
+                params: bucket.bucketPubR,
+                headers: {
+                    Authorization: 'Bearer ' + getToken()
+                },
+                imgDataUrl: '',
+                url: config.apiUrl.dev + '/api/systemUser/updateUserIcon',
+                editing: false,
+                dialogFormVisible: false,
+                dialogSkillsFormVisible: false,
+                formData: {
+                    oneWord: null,
+                    skillsList: []
+                },
+                skillsName: null,
+                skillsSlider: 0,
+            };
+        },
+        props: {
+            user: {
+                type: Object,
+                default: () => {
+                    return {
+                        name: '',
+                        email: '',
+                        avatar: '',
+                        roles: '',
+                        userId: ''
+                    }
+                }
+            }
+        },
+        created() {
+            this.getUserIntroduceData();
+        },
+        methods: {
+            ...mapMutations({
+                SET_AVATAR: 'user/SET_AVATAR'
+            }),
+            updateUserIcon() {
+                this.show = !this.show;
+            },
+
+            save(type) {
+                if (type === 'addSkills') {
+                    var skills = {skillsName: null, skillsSlider: null};
+                    skills.skillsName = this.skillsName;
+                    skills.skillsSlider = this.skillsSlider;
+
+                    if (this.skillsSlider === 0) {
+                        this.$message.warning('技能程度不能为0');
+                        return;
+                    }
+
+                    this.formData.skillsList.push(skills);
+                }
+
+                console.log(this.formData);
+                addUserIntroduce(this.formData).then((res) => {
+                    this.$message.success('保存成功');
+                    this.dialogFormVisible = false;
+                    this.dialogSkillsFormVisible = false;
+                });
+            },
+            changeSkillsSlider(item) {
+                console.log(item);
+                if (item.skillsSlider === 0) {
+                    for (var i = 0; i < this.formData.skillsList.length; i++) {
+                        if (this.formData.skillsList[i].skillsName === item.skillsName) {
+                            this.formData.skillsList.splice(i, 1);
+                        }
+                    }
+                }
+                this.save();
+            },
+
+            getUserIntroduceData() {
+                getUserIntroducesNoPage().then((res) => {
+                    if (res.data.length > 0) {
+                        this.formData = res.data[0];
+                        if (!res.data[0].skills) {
+                            this.formData.skillsList = [];
+                        } else {
+                            this.formData.skillsList = res.data[0].skillsList;
+                        }
+                    }
+                })
+            },
+            /**y
              * crop success
              *
              * [param] imgDataUrl
              * [param] field
              */
-    cropSuccess(imgDataUrl, field) {
-      console.log('-------- crop success --------')
-      this.imgDataUrl = imgDataUrl
-    },
-    /**
+            cropSuccess(imgDataUrl, field) {
+                console.log('-------- crop success --------');
+                this.imgDataUrl = imgDataUrl;
+            },
+            /**
              * upload success
              *
              * [param] jsonData   服务器返回数据，已进行json转码
              * [param] field
              */
-    cropUploadSuccess(jsonData, field) {
-      console.log('-------- upload success --------')
-      console.log(jsonData)
-      console.log(jsonData.data.attachUrl)
-      this.SET_AVATAR(jsonData.data.attachUrl)
-      this.user.avatar = jsonData.data.attachUrl
-      console.log(this.user.avatar)
-      console.log('field: ' + field)
-    },
-    /**
+            cropUploadSuccess(jsonData, field) {
+                console.log('-------- upload success --------');
+                console.log(jsonData);
+                console.log(jsonData.data.attachUrl);
+                this.SET_AVATAR(jsonData.data.attachUrl);
+                this.user.avatar = jsonData.data.attachUrl
+                console.log(this.user.avatar);
+                console.log('field: ' + field);
+            },
+            /**
              * upload fail
              *
              * [param] status    server api return error status, like 500
              * [param] field
              */
-    cropUploadFail(status, field) {
-      console.log('-------- upload fail --------')
-      console.log(status)
-      console.log('field: ' + field)
+            cropUploadFail(status, field) {
+                console.log('-------- upload fail --------');
+                console.log(status);
+                console.log('field: ' + field);
+            }
+        }
     }
-  }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -161,6 +259,10 @@ export default {
 
   .text-muted {
     color: #777;
+  }
+
+  .editEdu {
+    color: #2ac06d;
   }
 
   .user-profile {

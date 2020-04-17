@@ -123,6 +123,13 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'profile', icon: 'user', noCache: true }
+      },
+      {
+        path: '/profile/createActivity',
+        component: () => import('@/views/profile/createActivity'),
+        name: 'CreateActivity',
+        meta: { title: 'createActivity' },
+        hidden: true
       }
     ]
   }
@@ -248,7 +255,7 @@ export const asyncRoutes = [
         name: 'articleClass',
         meta: {
           title: 'articleClass',
-          icon: 'list',
+          icon: 'type',
           roles: ['admin', 'customer']
         }
       },

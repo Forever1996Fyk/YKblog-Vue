@@ -7,7 +7,8 @@ const state = {
   name: '',
   avatar: '',
   introduction: '',
-  roles: []
+  roles: [],
+  userId: ''
 }
 
 const mutations = {
@@ -25,6 +26,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USERID: (state, userId) => {
+    state.userId = userId
   }
 }
 
@@ -54,7 +58,7 @@ const actions = {
         }
         // var roles = [];
         // roles.push(data.roleCode);
-        const { roles, username, userIconUrl, nickName } = data
+        const { roles, username, userIconUrl, nickName,userId} = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
@@ -65,6 +69,7 @@ const actions = {
         commit('SET_NAME', username)
         commit('SET_AVATAR', userIconUrl)
         commit('SET_INTRODUCTION', nickName)
+        commit('SET_USERID', userId)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -79,7 +84,7 @@ const actions = {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         removeToken()
-        resetRouter()
+        // resetRouter()
 
         // reset visited views and cached views
         // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
