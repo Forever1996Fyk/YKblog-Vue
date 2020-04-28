@@ -58,7 +58,7 @@ const actions = {
         }
         // var roles = [];
         // roles.push(data.roleCode);
-        const { roles, username, userIconUrl, nickName,userId} = data
+        const { roles, username, userIconUrl, nickName, userId, account } = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
@@ -70,6 +70,11 @@ const actions = {
         commit('SET_AVATAR', userIconUrl)
         commit('SET_INTRODUCTION', nickName)
         commit('SET_USERID', userId)
+
+        localStorage.setItem('userId', userId)
+        localStorage.setItem('userName', username)
+        localStorage.setItem('userIconUrl', userIconUrl)
+        localStorage.setItem('account', account)
         resolve(data)
       }).catch(error => {
         reject(error)

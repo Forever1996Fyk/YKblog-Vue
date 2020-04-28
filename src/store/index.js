@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-import user from "@/store/modules/user";
-import app from "@/store/modules/app";
-import errorLog from "@/store/modules/errorLog";
-import permission from "@/store/modules/permission";
-import tagsView from "@/store/modules/tagsView";
-import settings from "@/store/modules/settings";
+import user from '@/store/modules/user'
+import app from '@/store/modules/app'
+import errorLog from '@/store/modules/errorLog'
+import permission from '@/store/modules/permission'
+import tagsView from '@/store/modules/tagsView'
+import settings from '@/store/modules/settings'
+import socket from '@/store/modules/socket'
 
 Vue.use(Vuex)
 
@@ -39,7 +40,8 @@ const store = new Vuex.Store({
     errorLog,
     permission,
     tagsView,
-    settings
+    settings,
+    socket
   },
   getters
 })

@@ -49,9 +49,38 @@ export default {
       }
     }
   },
+  created() {
+    this.doSocketOpen()
+    this.$store.getters.webSocket.onmessage = this.doMessage
+  },
   methods: {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    },
+    doSocketOpen() {
+      this.$store.dispatch('socket/init')
+    },
+    doMessage(msg) {
+      var data = JSON.parse(msg.data)
+      console.log(data)
+      if (data.msgType === 'system_message') {
+        if (data.systemMsgType === 'login_invalid') {
+          this.$msgbox({
+            title: '登录失效',
+            message: data.content,
+            confirmButtonText: '确定',
+            showCancelButton: false,
+            beforeClose: (action, instance, done) => {
+              done()
+              // await this.$store.dispatch('socket/close');
+              removeToken()
+              this.$store.getters.webSocket.onclose()
+              window.location.reload()
+              // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+            }
+          })
+        }
+      }
     }
   }
 }

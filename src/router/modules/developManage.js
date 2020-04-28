@@ -45,9 +45,10 @@ const developManageRouter = {
       meta: {
         title: 'swaggerDocument',
         roles: ['admin']
-      }
+      },
+      hidden: true
     }
   ]
-};
+}
 
 export default developManageRouter
