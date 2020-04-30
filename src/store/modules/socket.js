@@ -25,6 +25,8 @@ const mutations = {
       }
     }
     state.webSocket = new WebSocket(config.webSocketUrl.dev)
+
+    console.log(state.webSocket);
     state.webSocket.onopen = mutations.SOCKET_ONOPEN
     state.webSocket.onclose = mutations.SOCKET_ONCLOSE
     // state.webSocket.onmessage = mutations.SOCKET_ONMESSAGE;

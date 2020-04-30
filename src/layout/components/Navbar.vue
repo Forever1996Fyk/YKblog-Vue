@@ -40,9 +40,9 @@
           <el-dropdown-item command="updatePwd">
             {{ $t('navbar.updatePwd') }}
           </el-dropdown-item>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
+<!--          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">-->
+<!--            <el-dropdown-item>Docs</el-dropdown-item>-->
+<!--          </a>-->
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>

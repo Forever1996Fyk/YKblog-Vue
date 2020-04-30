@@ -11,7 +11,7 @@ module.exports = {
   },
 
   webSocketUrl: {
-      dev: 'ws://127.0.0.1:9090/ws',
+      dev: 'ws://47.104.29.22:9090/ws',
     },
 
   INDEX_PAGE: 'index',
@@ -24,4 +24,17 @@ module.exports = {
     }
 
   },
+  action: {
+    CONNECT: 'connect',
+    SEND: 'send',
+    SIGNED: 'signed',
+    KEEP_ALIVE: 'keep_alive',
+  },
+  msgType: {
+    SINGLE_CHAT: 'single_chat',
+    GROUP_CHAT: 'group_chat',
+    CHAT_ROOM: 'chat_room',
+    SYSTEM_MESSAGE: 'system_message',
+    NOTICE_MESSAGE: 'notice_message',
+  }
 };
