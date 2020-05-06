@@ -7,7 +7,7 @@ const developManageRouter = {
   name: 'developManage',
   meta: {
     title: 'developManage',
-    roles: ['admin', 'customer', 'register']
+    roles: ['admin', 'customer', 'register', 'tenant']
   },
   children: [
     {
