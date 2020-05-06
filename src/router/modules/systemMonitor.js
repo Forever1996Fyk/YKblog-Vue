@@ -7,7 +7,7 @@ const systemMonitorRouter = {
   name: 'systemMonitor',
   meta: {
     title: 'systemMonitor',
-    roles: ['admin', 'customer']
+    roles: ['admin', 'customer', 'tenant']
   },
   children: [
     {
@@ -16,7 +16,7 @@ const systemMonitorRouter = {
       name: 'druidMonitor',
       meta: {
         title: 'druidMonitor',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     }
   ]

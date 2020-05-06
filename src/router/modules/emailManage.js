@@ -7,7 +7,7 @@ const emailManageRouter = {
   name: 'emailManage',
   meta: {
     title: 'emailManage',
-    roles: ['admin', 'customer']
+    roles: ['admin', 'customer', 'tenant']
   },
   children: [
     {
@@ -16,7 +16,7 @@ const emailManageRouter = {
       name: 'emailConfig',
       meta: {
         title: 'emailConfig',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     },
     {
@@ -25,7 +25,7 @@ const emailManageRouter = {
       name: 'emailTemplate',
       meta: {
         title: 'emailTemplate',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     },
     {
@@ -34,7 +34,7 @@ const emailManageRouter = {
       name: 'emailLog',
       meta: {
         title: 'emailLog',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     }
   ]

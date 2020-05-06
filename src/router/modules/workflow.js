@@ -12,7 +12,7 @@ const workflowRouter = {
   meta: {
     title: 'WorkflowManage',
     icon: 'workflow',
-    roles: ['admin', 'customer', 'register']
+    roles: ['admin', 'customer', 'register', 'tenant']
   },
   children: [
     {
@@ -29,7 +29,7 @@ const workflowRouter = {
           name: 'modelerDesign',
           meta: {
             title: 'modelerDesign',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           },
           hidden: true
         },
@@ -39,7 +39,7 @@ const workflowRouter = {
           name: 'modelList',
           meta: {
             title: 'modelList',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         },
         {
@@ -48,7 +48,7 @@ const workflowRouter = {
           name: 'processList',
           meta: {
             title: 'processList',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         },
         // {
@@ -66,7 +66,7 @@ const workflowRouter = {
           name: 'historyProcessList',
           meta: {
             title: 'historyProcessList',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         }
       ]
@@ -85,7 +85,7 @@ const workflowRouter = {
           name: 'upcomingTask',
           meta: {
             title: 'upcomingTask',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         },
         {
@@ -94,7 +94,7 @@ const workflowRouter = {
           name: 'doneTask',
           meta: {
             title: 'doneTask',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         },
         {
@@ -103,7 +103,7 @@ const workflowRouter = {
           name: 'handleTask',
           meta: {
             title: 'handleTask',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           },
           hidden: true
         }
@@ -123,7 +123,7 @@ const workflowRouter = {
           name: 'userLeave',
           meta: {
             title: 'userLeave',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         },
         {
@@ -132,7 +132,7 @@ const workflowRouter = {
           name: 'userLeave',
           meta: {
             title: 'userLeave',
-            roles: ['admin', 'customer', 'register']
+            roles: ['admin', 'customer', 'register', 'tenant']
           }
         }
       ]

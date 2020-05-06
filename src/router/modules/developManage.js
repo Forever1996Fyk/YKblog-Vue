@@ -16,7 +16,7 @@ const developManageRouter = {
       name: 'genCode',
       meta: {
         title: 'genCode',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     },
     {
@@ -25,7 +25,7 @@ const developManageRouter = {
       name: 'gateway',
       meta: {
         title: 'gateway',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       },
       hidden: true
     },
@@ -35,7 +35,7 @@ const developManageRouter = {
       name: 'actionLog',
       meta: {
         title: 'actionLog',
-        roles: ['admin', 'customer', 'register']
+        roles: ['admin', 'customer', 'register', 'tenant']
       }
     },
     {
@@ -44,7 +44,7 @@ const developManageRouter = {
       name: 'swaggerDocument',
       meta: {
         title: 'swaggerDocument',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       },
       hidden: true
     }

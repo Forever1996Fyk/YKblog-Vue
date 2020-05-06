@@ -149,7 +149,7 @@ export const asyncRoutes = [
     meta: {
       title: 'SystemManage',
       icon: 'lock',
-      roles: ['admin', 'customer', 'register']
+      roles: ['admin', 'customer', 'register', 'tenant']
     },
     children: [
       developManageRouter,
@@ -167,7 +167,7 @@ export const asyncRoutes = [
     meta: {
       title: 'AuthorityManage',
       icon: 'user',
-      roles: ['admin']
+      roles: ['admin', 'tenant']
     },
     children: [
       {
@@ -176,7 +176,7 @@ export const asyncRoutes = [
         name: 'systemUser',
         meta: {
           title: 'systemUser',
-          roles: ['admin']
+          roles: ['admin', 'tenant']
         }
       },
       {
@@ -185,7 +185,7 @@ export const asyncRoutes = [
         name: 'systemRole',
         meta: {
           title: 'systemRole',
-          roles: ['admin']
+          roles: ['admin', 'tenant']
         }
       },
       {
@@ -194,7 +194,7 @@ export const asyncRoutes = [
         name: 'systemAuthority',
         meta: {
           title: 'systemAuthority',
-          roles: ['admin']
+          roles: ['admin', 'tenant']
         }
       },
       {
@@ -203,7 +203,7 @@ export const asyncRoutes = [
         name: 'systemMenu',
         meta: {
           title: 'systemMenu',
-          roles: ['admin']
+          roles: ['admin', 'tenant']
         }
       },
       {
@@ -212,7 +212,7 @@ export const asyncRoutes = [
         name: 'systemApi',
         meta: {
           title: 'systemApi',
-          roles: ['admin']
+          roles: ['admin', 'tenant']
         }
       }
     ]
@@ -226,7 +226,7 @@ export const asyncRoutes = [
     meta: {
       title: 'ArticleManage',
       icon: 'example',
-      roles: ['admin', 'customer']
+      roles: ['admin', 'customer', 'tenant']
     },
     children: [
       {
@@ -236,7 +236,7 @@ export const asyncRoutes = [
         meta: {
           title: 'createArticle',
           icon: 'edit',
-          roles: ['admin', 'customer']
+          roles: ['admin', 'customer', 'tenant']
         }
       },
       {
@@ -246,7 +246,7 @@ export const asyncRoutes = [
         meta: {
           title: 'articleList',
           icon: 'list',
-          roles: ['admin', 'customer']
+          roles: ['admin', 'customer', 'tenant']
         }
       },
       {
@@ -256,7 +256,7 @@ export const asyncRoutes = [
         meta: {
           title: 'articleClass',
           icon: 'type',
-          roles: ['admin', 'customer']
+          roles: ['admin', 'customer', 'tenant']
         }
       },
       {

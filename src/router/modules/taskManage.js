@@ -7,7 +7,7 @@ const taskManageRouter = {
   name: 'taskManage',
   meta: {
     title: 'taskManage',
-    roles: ['admin', 'customer']
+    roles: ['admin', 'customer', 'tenant']
   },
   children: [
     {
@@ -16,7 +16,7 @@ const taskManageRouter = {
       name: 'taskScheduler',
       meta: {
         title: 'taskScheduler',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     },
     {
@@ -25,7 +25,7 @@ const taskManageRouter = {
       name: 'taskLog',
       meta: {
         title: 'taskLog',
-        roles: ['admin']
+        roles: ['admin', 'tenant']
       }
     },
   ]
