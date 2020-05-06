@@ -5,7 +5,7 @@
 export default {
   computed: {
     src() {
-      return 'http://47.104.29.22:8088/druid/index.html'
+      return 'http://127.0.0.1:8088/druid/index.html'
       // return 'http://localhost:8088/druid/index.html';
     }
   }

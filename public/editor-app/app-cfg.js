@@ -21,5 +21,5 @@
 var ACTIVITI = ACTIVITI || {};
 
 ACTIVITI.CONFIG = {
-	'contextRoot' : 'http://47.104.29.22:8088/api/activiti'
+	'contextRoot' : 'http://127.0.0.1:8088/api/activiti'
 };

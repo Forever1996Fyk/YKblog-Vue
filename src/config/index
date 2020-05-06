@@ -4,14 +4,13 @@
 module.exports = {
   apiUrl: {
     //  本地环境接口请求地址
-    dev: 'http://47.104.29.22:8088',
-    // dev: 'http://127.0.0.1:8088',
+    dev: 'http://127.0.0.1:8088',
     //  生产环境接口请求地址
     pro: ''
   },
 
   webSocketUrl: {
-      dev: 'ws://47.104.29.22:9090/ws',
+      dev: 'ws://127.0.0.1:9090/ws',
     },
 
   INDEX_PAGE: 'index',

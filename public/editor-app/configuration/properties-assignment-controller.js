@@ -32,7 +32,7 @@ var KisBpmAssignmentCtrl = [ '$scope', '$modal','$http', function($scope, $modal
     $modal(opts);
 }];
 
-const apiUrl = 'http://47.104.29.22:8088';
+const apiUrl = 'http://127.0.0.1:8088';
 
 var KisBpmAssignmentPopupCtrl = [ '$scope','$modal', function($scope, $modal) {
 
